@@ -3,7 +3,8 @@
 **English** · [Deutsch](docs/i18n/README.de.md)
 
 A tray icon for [Haus.Licht](https://github.com/Gelaende51/Haus.Licht) on
-desktops other than KDE Plasma: GNOME (with the AppIndicator extension),
+desktops other than KDE Plasma: GNOME (with the AppIndicator extension;
+the native choice there is [Haus.Licht-gnome](https://github.com/Gelaende51/Haus.Licht-gnome)),
 XFCE, Cinnamon, MATE, Budgie, LXQt, Waybar and other trays. **On KDE Plasma,
 use [Haus.Licht-plasma](https://github.com/Gelaende51/Haus.Licht-plasma)
 instead**: its widget does all of this and more, and this tray's autostart

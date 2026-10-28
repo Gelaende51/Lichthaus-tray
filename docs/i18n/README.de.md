@@ -3,7 +3,8 @@
 [English](../../README.md) · **Deutsch**
 
 Ein Tray-Symbol für [Haus.Licht](https://github.com/Gelaende51/Haus.Licht)
-auf anderen Desktops als KDE Plasma: GNOME (mit der AppIndicator-Erweiterung),
+auf anderen Desktops als KDE Plasma: GNOME (mit der AppIndicator-Erweiterung;
+dort ist [Haus.Licht-gnome](https://github.com/Gelaende51/Haus.Licht-gnome) die native Wahl),
 XFCE, Cinnamon, MATE, Budgie, LXQt, Waybar und andere Trays. **Unter KDE
 Plasma stattdessen [Haus.Licht-plasma](https://github.com/Gelaende51/Haus.Licht-plasma)
 verwenden**: Das Widget kann all das und mehr, und der Autostart-Eintrag
