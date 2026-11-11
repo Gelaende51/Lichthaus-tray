@@ -46,11 +46,11 @@ back-off from 1 s doubling to 30 s.
 
 ## Testing beside the live daemon
 
-`HAUSLICHT_STATE` alone moves the state file, the `.armed.json` and the
+`LICHTHAUS_STATE` alone moves the state file, the `.armed.json` and the
 `.lock` (they derive from it); without it the daemon uses the checkout's
-`hauslicht.json`. The tests also give it its own `HOME`, XDG directories
+`lichthaus.json`. The tests also give it its own `HOME`, XDG directories
 and `XDG_RUNTIME_DIR`, a dead `DBUS_SESSION_BUS_ADDRESS` (no hotkeys or
-panel scripting), `HAUSLICHT_BACKENDS=mock` (no Bluetooth), confirm the
+panel scripting), `LICHTHAUS_BACKENDS=mock` (no Bluetooth), confirm the
 paths with `haus.common` first, and check the live files' mtime and size
 afterwards. Unix socket paths must stay under ~107 bytes, so the temp
 directory goes into `$XDG_RUNTIME_DIR`.

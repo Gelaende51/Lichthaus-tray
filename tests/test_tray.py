@@ -7,8 +7,8 @@ import pytest
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 from PySide6.QtWidgets import QApplication, QSystemTrayIcon  # noqa: E402
 
-from hauslicht_tray.i18n import Tr  # noqa: E402
-from hauslicht_tray.tray import Tray  # noqa: E402
+from lichthaus_tray.i18n import Tr  # noqa: E402
+from lichthaus_tray.tray import Tray  # noqa: E402
 
 
 @pytest.fixture(scope="module")

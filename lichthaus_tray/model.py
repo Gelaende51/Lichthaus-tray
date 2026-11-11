@@ -1,8 +1,8 @@
 """What the tray shows, as plain data: no Qt here, so it is tested directly.
 
-The `get` object (Haus.Licht docs/ctl-protocol.md) of widget 1 goes in; the
+The `get` object (Lichthaus docs/ctl-protocol.md) of widget 1 goes in; the
 icon state, the tooltip and the menu entries come out. Each entry carries the
-ctl command it sends; the Plasma widget (Haus.Licht-plasma main.qml) is the
+ctl command it sends; the Plasma widget (Lichthaus-plasma main.qml) is the
 reference for what each control does.
 """
 from __future__ import annotations
@@ -119,12 +119,12 @@ def status_text(st: Optional[dict], tr) -> str:
 
 
 def tooltip(st: Optional[dict], tr) -> str:
-    lines = [tr("Haus.Licht")]
+    lines = [tr("Lichthaus")]
     if st is None:
         lines.append(tr("Service not running"))
         return "\n".join(lines)
     if not protocol_ok(st):
-        lines.append(tr("Please update Haus.Licht"))
+        lines.append(tr("Please update Lichthaus"))
     for b in widget_bulbs(st):
         on = b.get("power") is not False and isinstance(b.get("output"), (int, float)) and b["output"] > 0
         out = b.get("output")
@@ -195,7 +195,7 @@ def build_menu(st: Optional[dict], tr, clap_last: str = "both") -> list:
                   Item("quit", tr("Quit"), special="quit")]
         return items
     if not protocol_ok(st):
-        items.append(Item("update", tr("Please update Haus.Licht"), enabled=False))
+        items.append(Item("update", tr("Please update Lichthaus"), enabled=False))
     items.append(Item("status", status_text(st, tr), enabled=False))
     items.append(sep("s-status"))
     has_bulbs = bool(widget_bulbs(st))

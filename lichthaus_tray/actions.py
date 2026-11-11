@@ -8,24 +8,24 @@ import subprocess
 from pathlib import Path
 from typing import Optional
 
-SERVICE = "hauslicht.service"
+SERVICE = "lichthaus.service"
 
 
-def hauslicht_bin() -> Optional[str]:
-    """~/.local/bin/hauslicht, else hauslicht on PATH."""
-    local = Path.home() / ".local" / "bin" / "hauslicht"
+def lichthaus_bin() -> Optional[str]:
+    """~/.local/bin/lichthaus, else lichthaus on PATH."""
+    local = Path.home() / ".local" / "bin" / "lichthaus"
     if local.is_file() and os.access(local, os.X_OK):
         return str(local)
-    return shutil.which("hauslicht")
+    return shutil.which("lichthaus")
 
 
 def settings_argv() -> Optional[list]:
-    h = hauslicht_bin()
+    h = lichthaus_bin()
     return [h, "config"] if h else None
 
 
 def open_settings() -> bool:
-    """Run `hauslicht config` detached; False when hauslicht is not found."""
+    """Run `lichthaus config` detached; False when lichthaus is not found."""
     argv = settings_argv()
     if not argv:
         return False
@@ -35,7 +35,7 @@ def open_settings() -> bool:
 
 
 def start_service(timeout: float = 30) -> tuple:
-    """`systemctl --user start hauslicht.service` (found on PATH). Returns
+    """`systemctl --user start lichthaus.service` (found on PATH). Returns
     (ok, message). Never anything but start, never as root."""
     exe = shutil.which("systemctl")
     if not exe:

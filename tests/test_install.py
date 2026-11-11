@@ -17,12 +17,12 @@ def test_install_and_uninstall(tmp_path):
     home.mkdir()
     out = run("install.sh", home).stdout
     assert "Installed" in out
-    launcher = home / ".local/bin/hauslicht-tray"
-    share = home / ".local/share/hauslicht-tray"
-    auto = home / ".config/autostart/hauslicht-tray.desktop"
-    app = home / ".local/share/applications/hauslicht-tray.desktop"
-    for p in (launcher, share / "hauslicht_tray/tray.py", share / "hauslicht_tray/icons/on.svg",
-              share / "hauslicht_tray/icons/LICENSES.md", share / "LICENSE", auto, app):
+    launcher = home / ".local/bin/lichthaus-tray"
+    share = home / ".local/share/lichthaus-tray"
+    auto = home / ".config/autostart/lichthaus-tray.desktop"
+    app = home / ".local/share/applications/lichthaus-tray.desktop"
+    for p in (launcher, share / "lichthaus_tray/tray.py", share / "lichthaus_tray/icons/on.svg",
+              share / "lichthaus_tray/icons/LICENSES.md", share / "LICENSE", auto, app):
         assert p.exists(), p
     assert os.access(launcher, os.X_OK)
     text = auto.read_text()
@@ -31,7 +31,7 @@ def test_install_and_uninstall(tmp_path):
     assert not list(share.rglob("__pycache__"))
     # The launcher's interpreter imports the package from the installed copy.
     py = launcher.read_text().split('exec "')[1].split('"')[0]
-    r = subprocess.run([py, "-c", "import hauslicht_tray.model as m; print(m.__file__)"],
+    r = subprocess.run([py, "-c", "import lichthaus_tray.model as m; print(m.__file__)"],
                        env={"HOME": str(home), "PATH": os.environ["PATH"], "PYTHONPATH": str(share)},
                        capture_output=True, text=True, check=True, cwd=tmp_path)
     assert r.stdout.startswith(str(share))

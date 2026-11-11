@@ -8,7 +8,7 @@ import os
 DE = {
     "Service not running": "Dienst läuft nicht",
     "Start service": "Dienst starten",
-    "Please update Haus.Licht": "Bitte Haus.Licht aktualisieren",
+    "Please update Lichthaus": "Bitte Lichthaus aktualisieren",
     "Connected": "Verbunden",
     "Idle (disconnected)": "Ruht (getrennt)",
     "Not connected: %1": "Nicht verbunden: %1",
@@ -32,9 +32,9 @@ DE = {
     "not connected": "nicht verbunden",
     "offline": "offline",
     "idle": "ruht",
-    "Haus.Licht": "Haus.Licht",
+    "Lichthaus": "Lichthaus",
     "Could not start the service: %1": "Dienst konnte nicht gestartet werden: %1",
-    "hauslicht not found": "hauslicht nicht gefunden",
+    "lichthaus not found": "lichthaus nicht gefunden",
 }
 
 

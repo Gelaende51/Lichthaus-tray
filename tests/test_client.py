@@ -3,7 +3,7 @@ import time
 
 import pytest
 
-from hauslicht_tray import client
+from lichthaus_tray import client
 from conftest import FakeDaemon, sample_state
 
 
@@ -17,11 +17,11 @@ def wait_for(cond, timeout=5.0):
 
 
 def test_sock_path_env(monkeypatch, tmp_path):
-    monkeypatch.setenv("HAUSLICHT_SOCK", str(tmp_path / "x.sock"))
+    monkeypatch.setenv("LICHTHAUS_SOCK", str(tmp_path / "x.sock"))
     assert client.sock_path() == tmp_path / "x.sock"
-    monkeypatch.delenv("HAUSLICHT_SOCK")
+    monkeypatch.delenv("LICHTHAUS_SOCK")
     monkeypatch.setenv("XDG_RUNTIME_DIR", "/run/user/42")
-    assert str(client.sock_path()) == "/run/user/42/hauslicht.sock"
+    assert str(client.sock_path()) == "/run/user/42/lichthaus.sock"
 
 
 def test_build_request():

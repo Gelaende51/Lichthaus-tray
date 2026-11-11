@@ -3,22 +3,22 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hauslicht-tray"
+name = "lichthaus-tray"
 version = "0.1.0"
-description = "Tray icon for Haus.Licht on desktops other than KDE Plasma"
+description = "Tray icon for Lichthaus on desktops other than KDE Plasma"
 readme = "README.md"
 license = {text = "AGPL-3.0-or-later"}
 requires-python = ">=3.9"
 dependencies = ["PySide6>=6.5"]
 
 [project.scripts]
-hauslicht-tray = "hauslicht_tray.tray:main"
+lichthaus-tray = "lichthaus_tray.tray:main"
 
 [tool.setuptools]
-packages = ["hauslicht_tray"]
+packages = ["lichthaus_tray"]
 
 [tool.setuptools.package-data]
-hauslicht_tray = ["icons/*.svg", "icons/*.md"]
+lichthaus_tray = ["icons/*.svg", "icons/*.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

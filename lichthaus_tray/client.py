@@ -1,7 +1,7 @@
-"""Haus.Licht's ctl protocol (Haus.Licht docs/ctl-protocol.md), spoken directly.
+"""Lichthaus's ctl protocol (Lichthaus docs/ctl-protocol.md), spoken directly.
 
 One JSON line per connection: a request in, a reply out. ``watch`` keeps its
-connection open and streams events. No import of Haus.Licht's package: the
+connection open and streams events. No import of Lichthaus's package: the
 socket is the only interface.
 """
 from __future__ import annotations
@@ -26,12 +26,12 @@ class Unreachable(Exception):
 
 
 def sock_path() -> Path:
-    """$HAUSLICHT_SOCK, else $XDG_RUNTIME_DIR/hauslicht.sock."""
-    env = os.environ.get("HAUSLICHT_SOCK")
+    """$LICHTHAUS_SOCK, else $XDG_RUNTIME_DIR/lichthaus.sock."""
+    env = os.environ.get("LICHTHAUS_SOCK")
     if env:
         return Path(env)
     run = os.environ.get("XDG_RUNTIME_DIR") or f"/run/user/{os.getuid()}"
-    return Path(run) / "hauslicht.sock"
+    return Path(run) / "lichthaus.sock"
 
 
 def build_request(args, widget: int = 1, which: Optional[str] = None) -> dict:
@@ -113,7 +113,7 @@ class Watcher:
         self._sock: Optional[socket.socket] = None
         self._lock = threading.Lock()
         self._refresh_timer: Optional[threading.Timer] = None
-        self._thread = threading.Thread(target=self._run, name="hauslicht-watch", daemon=True)
+        self._thread = threading.Thread(target=self._run, name="lichthaus-watch", daemon=True)
         self.delays: list[float] = []  # the back-off waits taken (for tests)
         self.connected = False
         self.fallback = False

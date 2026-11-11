@@ -1,8 +1,8 @@
 import os
 import stat
 
-from hauslicht_tray import actions, model
-from hauslicht_tray.i18n import Tr, is_german
+from lichthaus_tray import actions, model
+from lichthaus_tray.i18n import Tr, is_german
 from conftest import sample_state
 
 EN, DE = Tr(False), Tr(True)
@@ -88,14 +88,14 @@ def test_unreachable_menu():
         ("quit", "Quit")]
     assert by_id(items, "start").special == "start-service"
     assert model.icon_state(None) == "disconnected"
-    assert model.tooltip(None, EN) == "Haus.Licht\nService not running"
+    assert model.tooltip(None, EN) == "Lichthaus\nService not running"
 
 
 def test_protocol_too_old():
     st = sample_state()
     st.pop("protocol")
     items = model.build_menu(st, EN)
-    assert items[0].id == "update" and items[0].text == "Please update Haus.Licht" and not items[0].enabled
+    assert items[0].id == "update" and items[0].text == "Please update Lichthaus" and not items[0].enabled
     assert by_id(items, "light") is not None  # still usable
     assert by_id(model.build_menu(sample_state(protocol=0), EN), "update")
     assert by_id(model.build_menu(sample_state(), EN), "update") is None
@@ -117,8 +117,8 @@ def test_icon_state():
 
 
 def test_tooltip():
-    assert model.tooltip(sample_state(), EN) == "Haus.Licht\nDesk: on, 50 %, connected\nShelf: off, 0 %, disconnected"
-    assert model.tooltip(sample_state(), DE) == "Haus.Licht\nDesk: an, 50 %, verbunden\nShelf: aus, 0 %, getrennt"
+    assert model.tooltip(sample_state(), EN) == "Lichthaus\nDesk: on, 50 %, connected\nShelf: off, 0 %, disconnected"
+    assert model.tooltip(sample_state(), DE) == "Lichthaus\nDesk: an, 50 %, verbunden\nShelf: aus, 0 %, getrennt"
 
 
 def test_german_menu():
@@ -169,8 +169,8 @@ def test_start_service_with_fake_systemctl(tmp_path, monkeypatch):
     fake_bin(bindir, "systemctl", f'echo "$@" >> "{log}"')
     monkeypatch.setenv("PATH", f"{bindir}:{os.environ['PATH']}")
     assert actions.start_service() == (True, "")
-    assert log.read_text() == "--user start hauslicht.service\n"
-    fake_bin(bindir, "systemctl", 'echo "Unit hauslicht.service not found." >&2; exit 5')
+    assert log.read_text() == "--user start lichthaus.service\n"
+    fake_bin(bindir, "systemctl", 'echo "Unit lichthaus.service not found." >&2; exit 5')
     ok, msg = actions.start_service()
     assert not ok and "not found" in msg
 
@@ -181,8 +181,8 @@ def test_settings_path(tmp_path, monkeypatch):
     bindir.mkdir()
     monkeypatch.setenv("PATH", str(bindir))
     assert actions.settings_argv() is None
-    fake_bin(bindir, "hauslicht", "true")
-    assert actions.settings_argv() == [str(bindir / "hauslicht"), "config"]
+    fake_bin(bindir, "lichthaus", "true")
+    assert actions.settings_argv() == [str(bindir / "lichthaus"), "config"]
     (tmp_path / ".local" / "bin").mkdir(parents=True)
-    local = fake_bin(tmp_path / ".local" / "bin", "hauslicht", "true")
+    local = fake_bin(tmp_path / ".local" / "bin", "lichthaus", "true")
     assert actions.settings_argv() == [str(local), "config"]

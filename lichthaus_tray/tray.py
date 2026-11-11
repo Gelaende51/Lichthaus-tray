@@ -58,7 +58,7 @@ class Tray(QObject):
         self.bridge.state.connect(self.on_state)
         self.bridge.error.connect(self.on_error)
         self.bridge.done.connect(self.on_done)
-        self.pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="hauslicht-cmd")
+        self.pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="lichthaus-cmd")
         color = app.palette().color(QPalette.WindowText).name()
         self.icons = {s: render_icon(s, color) for s in ("on", "off", "disconnected")}
         self.icon = QSystemTrayIcon(self.icons["disconnected"])
@@ -122,7 +122,7 @@ class Tray(QObject):
             self.quit()
         elif it.special == "settings":
             if not actions.open_settings():
-                self.on_error(self.tr("hauslicht not found"))
+                self.on_error(self.tr("lichthaus not found"))
         elif it.special == "start-service":
             threading.Thread(target=self._start_service, daemon=True).start()
         elif it.cmd:
@@ -150,7 +150,7 @@ class Tray(QObject):
         self.watcher.refresh(0.05)
 
     def on_error(self, msg: str):
-        self.icon.showMessage(self.tr("Haus.Licht"), msg, QSystemTrayIcon.Warning, 5000)
+        self.icon.showMessage(self.tr("Lichthaus"), msg, QSystemTrayIcon.Warning, 5000)
 
     def on_activated(self, reason):
         st = self.st
@@ -170,9 +170,9 @@ class Tray(QObject):
 
 def main(argv=None):
     app = QApplication(sys.argv if argv is None else argv)
-    app.setApplicationName("hauslicht-tray")
-    app.setApplicationDisplayName("Haus.Licht")
-    app.setDesktopFileName("hauslicht-tray")
+    app.setApplicationName("lichthaus-tray")
+    app.setApplicationDisplayName("Lichthaus")
+    app.setDesktopFileName("lichthaus-tray")
     app.setQuitOnLastWindowClosed(False)
     tray = Tray(app)
     signal.signal(signal.SIGINT, lambda *a: tray.quit())

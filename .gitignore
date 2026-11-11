@@ -5,6 +5,6 @@ __pycache__/
 build/
 dist/
 *.egg-info/
-# never commit a Haus.Licht state file
-hauslicht.json
+# never commit a Lichthaus state file
+lichthaus.json
 *.armed.json
